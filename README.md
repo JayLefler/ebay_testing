@@ -1,6 +1,6 @@
 ebay.yaml has configuration files that are needed to access Sandbox and PROD eBay environments. All current testing is being done on Sandbox.
 
-ebay5.py is a direct copy of https://github.com/timotheus/ebaysdk-python/blob/master/samples/trading.py, except with the init_options function filled out with my values (that are also in ebay.yaml)
+ebay5.py is a direct copy of https://github.com/timotheus/ebaysdk-python/blob/master/samples/trading.py, except with the init_options function filled out ebay.yaml values.
 
 The other change to the file is I added 'domain=... to all of the api=Trading() functions. If there is a way for you to change this and put it into init_options, that would be great :-)
 
