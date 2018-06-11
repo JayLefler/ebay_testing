@@ -27,8 +27,11 @@ def init_options():
     parser.add_option("-d", "--debug",
                       action="store_true", dest="debug", default=False,
                       help="Enabled debugging [default: %default]")
+    parser.add_option("-n", "--domain",
+                      dest="domain", default='api.sandbox.ebay.com',
+                      help="Specifies which environment to use (Sandbox or PROD)")
     parser.add_option("-y", "--yaml",
-                      dest="yaml", default='/Users/jay/Desktop/ebaysdk/ebaysdk-2.1.5/ebay.yaml',
+                      dest="yaml", default='ebay.yaml',
                       help="Specifies the name of the YAML defaults file. [default: %default]")
     parser.add_option("-a", "--appid",
                       dest="appid", default='NolanLef-Building-SBX-ab058513b-0fc995e8',
@@ -47,7 +50,7 @@ def init_options():
 def run(opts):
 
     try:
-        api = Trading(domain='api.sandbox.ebay.com',debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
+        api = Trading(domain=opts.domain, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
                       certid=opts.certid, devid=opts.devid)
 
         api.execute('GetCharities', {'CharityID': 3897})
@@ -61,7 +64,7 @@ def run(opts):
 
 def feedback(opts):
     try:
-        api = Trading(domain='api.sandbox.ebay.com',debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
+        api = Trading(domain=opts.domain, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
                       certid=opts.certid, devid=opts.devid, warnings=False)
 
         api.execute('GetFeedback', {'UserID': 'testuser_jaylefler'})
@@ -80,7 +83,7 @@ def feedback(opts):
 def getTokenStatus(opts):
 
     try:
-        api = Trading(domain='api.sandbox.ebay.com',debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
+        api = Trading(domain=opts.domain, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
                       certid=opts.certid, devid=opts.devid, warnings=False)
 
         api.execute('GetTokenStatus')
@@ -96,7 +99,7 @@ def verifyAddItem(opts):
     """
 
     try:
-        api = Trading(domain='api.sandbox.ebay.com',debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
+        api = Trading(domain=opts.domain, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
                       certid=opts.certid, devid=opts.devid, warnings=False)
 
         myitem = {
@@ -149,7 +152,7 @@ def verifyAddItemErrorCodes(opts):
     """
 
     try:
-        api = Trading(domain='api.sandbox.ebay.com',debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
+        api = Trading(domain=opts.domain, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
                       certid=opts.certid, devid=opts.devid, warnings=False)
 
         myitem = {
@@ -226,7 +229,7 @@ def verifyAddItemErrorCodes(opts):
 def uploadPicture(opts):
 
     try:
-        api = Trading(domain='api.sandbox.ebay.com',debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
+        api = Trading(domain=opts.domain, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
                       certid=opts.certid, devid=opts.devid, warnings=True)
 
         pictureData = {
@@ -246,7 +249,7 @@ def uploadPicture(opts):
 def uploadPictureFromFilesystem(opts, filepath):
 
     try:
-        api = Trading(domain='api.sandbox.ebay.com',debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
+        api = Trading(domain=opts.domain, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
                       certid=opts.certid, devid=opts.devid, warnings=True)
 
         # pass in an open file
@@ -269,7 +272,7 @@ def uploadPictureFromFilesystem(opts, filepath):
 def memberMessages(opts):
 
     try:
-        api = Trading(domain='api.sandbox.ebay.com',debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
+        api = Trading(domain=opts.domain, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
                       certid=opts.certid, devid=opts.devid, warnings=True)
 
         now = datetime.datetime.now()
@@ -307,7 +310,7 @@ def memberMessages(opts):
 def getUser(opts):
     try:
 
-        api = Trading(domain='api.sandbox.ebay.com',debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
+        api = Trading(domain=opts.domain, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
                       certid=opts.certid, devid=opts.devid, warnings=True, timeout=20, siteid='101')
 
         api.execute('GetUser', {'UserID': 'sallyma789'})
@@ -321,7 +324,7 @@ def getUser(opts):
 def getOrders(opts):
 
     try:
-        api = Trading(domain='api.sandbox.ebay.com',debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
+        api = Trading(domain=opts.domain, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
                       certid=opts.certid, devid=opts.devid, warnings=True, timeout=20)
 
         api.execute('GetOrders', {'NumberOfDays': 30})
@@ -335,7 +338,7 @@ def getOrders(opts):
 def categories(opts):
 
     try:
-        api = Trading(domain='api.sandbox.ebay.com',debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
+        api = Trading(domain=opts.domain, debug=opts.debug, config_file=opts.yaml, appid=opts.appid,
                       certid=opts.certid, devid=opts.devid, warnings=True, timeout=20, siteid='0')
 
         callData = {
@@ -352,7 +355,6 @@ def categories(opts):
         print(e.response.dict())
 
 '''
-api = trading(domain='api.sandbox.ebay.com')
 api.execute('GetCategories', {
     'DetailLevel': 'ReturnAll',
     'CategorySiteID': 101,
