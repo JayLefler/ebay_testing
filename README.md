@@ -1,5 +1,7 @@
-ebay.yaml has configuration files that are needed to access Sandbox and PROD eBay environments. All current testing is being done on Sandbox.
+You will need to download the ebaysdk for python repository to get all the necessary files you need.
 
-ebay5.py is a direct copy of https://github.com/timotheus/ebaysdk-python/blob/master/samples/trading.py, except with the init_options function filled out ebay.yaml values.
+Also (not sure if it's a bug or not) but wherever you execute your script from, will need the common.py file placed there. For some reason import statement will not recognize the file unless its in current working directory.
 
-I think most of the functions are working -- other than AddItems which keeps asking for me to crete a seller account (which I already have).
+With that said, Sandbox site isn't working because there is a bug (I'm assuming) with linking the sandbox accounts to a PayPal address. 
+
+I tried identical script using PROD credentials, and it worked smoothly with one exception: GetTokenStatus.
